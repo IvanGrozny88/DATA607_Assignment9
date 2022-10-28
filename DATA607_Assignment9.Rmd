@@ -1,0 +1,41 @@
+---
+title: "DATA607_Assignment9"
+author: "IvanTikhonov"
+date: "2022-10-27"
+output: html_document
+---
+The New York Times web site provides a rich set of APIs, as described here: https://developer.nytimes.com/apis
+You’ll need to start by signing up for an API key.
+Your task is to choose one of the New York Times APIs, construct an interface in R to read in the JSON data, and
+transform it into an R DataFrame.
+
+Libraries
+```{r}
+# Loading the necessary libraries
+library(tidyverse)
+library(jsonlite)
+library(stringr)
+library(ggplot2)
+library(dbplyr)
+library(jsonlite)
+library(httr)
+library(DT)
+library(kableExtra)
+```
+
+Connect to the API
+I will be using the movies API, filtered for the following sections:
+Let’s first read in the data from the API:
+
+```{r}
+url <- "https://api.nytimes.com/svc/movies/v2/reviews/search.json"
+api.key <- "vx4VGIrlkceM9FlIZZU35sADhGfXAmK7"
+url <- paste0(url, '?api-key=', api.key)
+df <- fromJSON(url, flatten = TRUE)
+datatable(df$results)
+```
+
+
+
+
+
